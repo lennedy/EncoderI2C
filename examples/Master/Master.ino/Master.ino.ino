@@ -9,12 +9,13 @@ void setup(){
 
 void loop(){
   long l=0;
+  Serial.print("Encoder: ");
   l=encoder.getData();
   
-  Serial.print("Encoder: ");
+  
   Serial.println(l);
   Serial.println("");
 
-  delay(1000);
+  delay(50);
 }
 

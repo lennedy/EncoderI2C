@@ -1,27 +1,24 @@
 #ifndef CONVERSAO_H
 #define CONVERSAO_H
 
-#define DATA_SIZE 4 
+#define DATA_SIZE 1 
 
 class Conversao{
   public:
   long arrayToLong(const uint8_t* c){
     long temp=0;
-    temp+=c[0];
-    temp<<=8;  
-    temp+=c[1];
-    temp<<=8;   
-    temp+=c[2];
-    temp<<=8;  
-    temp+=c[3];  
-  
+		for(int i=0; i<DATA_SIZE; i++){
+		  temp+=c[i];
+			if(i<DATA_SIZE-1)
+			  temp<<=8;  
+		}
     return temp;
   }
 
   void longToArray(const long t, uint8_t* c){
-    c[0] = t>>24;
-    c[1] = t>>16;
-    c[2] = t>>8;
+//    c[0] = t>>24;
+//    c[1] = t>>16;
+//    c[2] = t>>8;
     c[3] = t & 0xff;
   }
   

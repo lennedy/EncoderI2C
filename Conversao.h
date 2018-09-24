@@ -6,16 +6,14 @@
 class Conversao{
   public:
   long arrayToLong(const uint8_t* c){
-    long temp=0;
-    temp+=c[0];
-    temp<<=8;  
-    temp+=c[1];
-    temp<<=8;   
-    temp+=c[2];
-    temp<<=8;  
-    temp+=c[3];  
-  
-    return temp;
+    unsigned long temp=0;
+ 		for(int i=DATA_SIZE-1; i>=0; i--){
+		  temp+=(unsigned long)c[i];
+			if(i>0)
+			  temp<<=8;  
+		}
+//  temp = (long)c[0];
+    return (long)temp;
   }
 
   void longToArray(const long t, uint8_t* c){
