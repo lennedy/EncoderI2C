@@ -1,10 +1,12 @@
 //#include "Conversao.h"
 #include "TinyWireS.h"
 
-#define I2C_SLAVE_ADDR  0x26
-#define LED_PIN  3
+#define RIGHT_ENCODER_ADDR  0x26
+#define LEFT_ENCODER_ADDR  0x27
+#define LED_PIN       5
 #define CONTADOR_PIN  1
-#define SENTIDO_PIN  4
+#define SENTIDO_PIN   4
+#define ADDR_PIN      3
 
 volatile long count=-1000;
 volatile uint8_t array[4];
@@ -14,7 +16,16 @@ volatile uint8_t numByte=0;
 void setup(){
   pinMode(LED_PIN,OUTPUT);
   pinMode(CONTADOR_PIN,INPUT);
-  TinyWireS.begin(I2C_SLAVE_ADDR);
+  pinMode(SENTIDO_PIN,INPUT);
+  pinMode(ADDR_PIN,INPUT);
+  
+  if(digitalRead(ADDR_PIN) == HIGH){
+    TinyWireS.begin(RIGHT_ENCODER_ADDR);
+  }
+  else{
+    TinyWireS.begin(LEFT_ENCODER_ADDR);
+  }
+  
   TinyWireS.onRequest( onI2CRequest );
   TinyWireS.onReceive(receiveEvent);
 }
