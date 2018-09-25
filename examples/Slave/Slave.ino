@@ -3,6 +3,8 @@
 
 #define I2C_SLAVE_ADDR  0x26
 #define LED_PIN  3
+#define CONTADOR_PIN  1
+#define SENTIDO_PIN  4
 
 volatile long count=-1000;
 volatile uint8_t array[4];
@@ -11,15 +13,36 @@ volatile uint8_t numByte=0;
 
 void setup(){
   pinMode(LED_PIN,OUTPUT);
+  pinMode(CONTADOR_PIN,INPUT);
   TinyWireS.begin(I2C_SLAVE_ADDR);
   TinyWireS.onRequest( onI2CRequest );
   TinyWireS.onReceive(receiveEvent);
 }
  
 void loop(){
-  Switch(LED_PIN);
-  delay(100);
-  count++;
+  
+  //delay(100);
+  if(pinEdgeHigh()){
+    Switch(LED_PIN);
+    if(digitalRead(SENTIDO_PIN))
+      count++;
+    else
+      count--;
+  }
+}
+
+bool pinEdgeHigh(){
+  static int valPin=0;
+  static int valPinLast=0;
+  valPin = digitalRead(CONTADOR_PIN);
+  if(valPin != valPinLast){
+    if(valPin == HIGH){
+      valPinLast= valPin;
+      return true;
+    }
+   }
+   valPinLast= valPin;
+   return false;
 }
 
 void receiveEvent(uint8_t b){
