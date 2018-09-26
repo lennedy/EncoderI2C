@@ -9,12 +9,16 @@ void setup(){
 
 void loop(){
   long l=0;
-  Serial.print("Nº de pulsos: ");
-  l=encoder.getPulsos();
-  Serial.print(l);
-  Serial.println("");
+  float a=0;
   
+  Serial.print("Pulsos e Ang: ");
+  l=encoder.getPulsos();
+  a=encoder.getAngulo();
+  Serial.print(l);
+  Serial.print("; ");
+  Serial.println(l);
 
-  delay(50);
+
+  delay(500);
 }
 
