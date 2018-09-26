@@ -3,18 +3,17 @@
 
 EncoderI2C encoder;
 
-void setup(){  
+void setup(){
     Serial.begin(9600);
 }
 
 void loop(){
   long l=0;
-  Serial.print("Encoder: ");
-  l=encoder.getData();
-  
-  
-  Serial.println(l);
+  Serial.print("Nº de pulsos: ");
+  l=encoder.getPulsos();
+  Serial.print(l);
   Serial.println("");
+  
 
   delay(50);
 }
