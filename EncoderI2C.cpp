@@ -2,6 +2,7 @@
 #include <Arduino.h>
 
 EncoderI2C::EncoderI2C(int address){
+	ultimosPulsos = 0;
 	pulsosPorRevolucao=224.4;
 	Wire.begin();
 	ATtinyAddress= address;
@@ -38,7 +39,15 @@ float EncoderI2C::getAngulo(){
 	return pulsosParaAngulo(getPulsos());
 }
 
-float getAnguloRelativo(){
-
+long EncoderI2C::getPulsos(){
+	long pulsos = getData();
+	ultimosPulsos = pulsos;
+	return pulsos;
 }
+
+float EncoderI2C::getAnguloRelativo(){
+	long pulsos=ultimosPulsos;
+	return (getPulsos() - pulsos);
+}
+
 

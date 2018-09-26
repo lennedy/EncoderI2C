@@ -42,7 +42,7 @@ class EncoderI2C{
 	public:
 		EncoderI2C(int address=0x26);
 
-		inline long getPulsos(){return getData();}
+		long getPulsos();
 		float getAngulo();
 		float getAnguloRelativo();
 
@@ -52,6 +52,7 @@ class EncoderI2C{
 		int ATtinyAddress;
 		float pulsosPorRevolucao;
 		Conversao conv;
+		long ultimosPulsos;
 
 		long getData();
 
