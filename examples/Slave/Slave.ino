@@ -1,4 +1,3 @@
-//#include "Conversao.h"
 #include "TinyWireS.h"
 
 #define RIGHT_ENCODER_ADDR  0x26
