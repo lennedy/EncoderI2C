@@ -41,10 +41,21 @@ class Conversao{
 class EncoderI2C{
 	public:
 		EncoderI2C(int address=0x26);
-		long getData();
+
+		inline long getPulsos(){return getData();}
+		float getAngulo();
+		float getAnguloRelativo();
+
+		inline void setPulsosPorRevolucao(float ppr){pulsosPorRevolucao=ppr;}
+
 	private:
 		int ATtinyAddress;
+		float pulsosPorRevolucao;
 		Conversao conv;
+
+		long getData();
+
+		float pulsosParaAngulo(long pulsos){return 360*(pulsos/pulsosPorRevolucao);}
 };
 
 #endif

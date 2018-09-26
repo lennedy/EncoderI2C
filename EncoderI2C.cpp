@@ -2,6 +2,7 @@
 #include <Arduino.h>
 
 EncoderI2C::EncoderI2C(int address){
+	pulsosPorRevolucao=224.4;
 	Wire.begin();
 	ATtinyAddress= address;
 }
@@ -32,3 +33,12 @@ long EncoderI2C::getData(){
 	Serial.print(";");
 	return conv.arrayToLong(byteArray);
 }
+
+float EncoderI2C::getAngulo(){
+	return pulsosParaAngulo(getPulsos());
+}
+
+float getAnguloRelativo(){
+
+}
+
