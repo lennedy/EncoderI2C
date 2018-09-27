@@ -23,15 +23,6 @@ long EncoderI2C::getData(){
 		}
 	}
 
-
-	Serial.print(byteArray[0]);
-	Serial.print(";");
-	Serial.print(byteArray[1]);
-	Serial.print(";");
-	Serial.print(byteArray[2]);
-	Serial.print(";");
-	Serial.print(byteArray[3]);
-	Serial.print(";");
 	return conv.arrayToLong(byteArray);
 }
 
