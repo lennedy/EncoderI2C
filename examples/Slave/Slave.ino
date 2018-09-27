@@ -3,9 +3,9 @@
 #define RIGHT_ENCODER_ADDR  0x26
 #define LEFT_ENCODER_ADDR  0x27
 #define LED_PIN       5
-#define CONTADOR_PIN  1
+#define CONTADOR_PIN  3
 #define SENTIDO_PIN   4
-#define ADDR_PIN      3
+#define ADDR_PIN      1
 
 volatile long count=-1000;
 volatile uint8_t array[4];
@@ -73,7 +73,7 @@ void onI2CRequest(){
 }
 
 void Switch(int relay){
-    if (digitalRead(relay) == HIGH){ digitalWrite(relay,LOW);}
-    else {digitalWrite(relay,HIGH);}
+//    if (digitalRead(relay) == HIGH){ digitalWrite(relay,LOW);}
+//    else {digitalWrite(relay,HIGH);}
 }
 
